@@ -151,13 +151,12 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="./static/images/main_fig_v0.pdf" alt="Teaser" width="100%"/>
-      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
+      <video id="teaser" controls loop playsinline height="100%" poster="./static/images/main_fig_v4.jpg">
+        <source src="./static/videos/Q_Dig_Vid.mov"
                 type="video/mp4">
-      </video> -->
+      </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Q-DIG</span> (<b>Q</b>uality Diversity for <b>D</b>iverse <b>I</b>nstruction <b>G</b>eneration) generates challenging and human-like instructions for Vision-Language-Action models.
+        <span class="dnerf">Q-DIG</span> (<b>Q</b>uality Diversity for <b>D</b>iverse <b>I</b>nstruction <b>G</b>eneration) generates challenging<br>and human-like instructions for Vision-Language-Action models.
       </h2>
     </div>
   </div>
@@ -165,7 +164,52 @@
 
 
 <section class="hero is-light is-small">
-
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+        <div class="item">
+          <video poster="" autoplay muted loop playsinline height="100%">
+            <source src="./static/videos/Q_Dig_Vid.mov" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 
@@ -177,15 +221,356 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            ABSTRACT HERE
-          </p>
-          <p>
-            ABSTRACT HERE
+            Vision-Language-Action (VLA) models have sig-
+nificant potential to enable general-purpose robotic systems for
+a range of vision-language tasks. However, the performance of
+VLA-based robots is highly sensitive to the precise wording of
+language instructions, and it remains difficult to predict when
+such robots will fail. To improve the robustness of VLAs to
+different wordings, we present Q-DIG (Quality Diversity for
+Diverse Instruction Generation), which performs red-teaming
+by scalably identifying diverse natural language task descrip-
+tions that induce failures while remaining task-relevant. Q-
+DIG integrates Quality Diversity (QD) techniques with Vision-
+Language Models (VLMs) to generate a broad spectrum of
+adversarial instructions that expose meaningful vulnerabilities
+in VLA behavior. Our results across multiple simulation bench-
+marks show that Q-DIG finds more diverse and meaningful
+failure modes compared to baseline methods, and that fine-
+tuning VLAs on the generated instructions improves task
+success rates. Furthermore, results from a user study highlight
+that Q-DIG generates prompts judged to be more natural and
+human-like than those from baselines. Together, these findings
+suggest that Q-DIG is a promising approach for identifying
+vulnerabilities and improving the robustness of VLA-based
+robots.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
+
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="hero-body">
+          <img src="./static/images/pipeline_v06.jpg" alt="Q-DIG Method Pipeline" width="100%"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Q-DIG leverages previously generated instructions as in-context examples to generate new adversarial instructions in target attack styles. Our method consists of three main steps:
+          </p>
+          <p>
+            <strong>(1) Instruction Generation:</strong> Starting from an original task instruction, Q-DIG uses a Vision-Language Model (VLM) as a mutator to generate candidate instructions in target attack styles (e.g., "use of adverbs", "casual style"). The VLM leverages in-context learning with previously discovered instructions and visual context from the task.
+          </p>
+          <p>
+            <strong>(2) Instruction Evaluation:</strong> Generated instructions are evaluated by simulating the base VLA on the task to compute failure variance and an LLM judge categorizes each instruction into semantic attack styles. This provides both quality and diversity measures for the Quality Diversity optimization.
+          </p>
+          <p>
+            <strong>(3) Archive Update:</strong> Instructions inducing high failure rates with different attack styles are stored in an archive. Each archive cell corresponds to a specific attack style category, and only the best-performing instruction for each style is retained, providing high-quality and diverse examples for future iterations.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method Overview. -->
+
+    <!-- Diversity Analysis. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Instruction Diversity & Quality</h2>
+        <div class="content has-text-justified">
+          <p>
+            Q-DIG generates more diverse adversarial instructions compared to baseline methods while maintaining high failure variance. Our method achieves superior performance across multiple diversity metrics including BERT diversity, BLEU diversity, and archive coverage across different attack styles.
+          </p>
+        </div>
+        <div class="columns">
+          <div class="column is-4">
+            <img src="./static/images/Diversity_page-0001.jpg" alt="Diversity Comparison Results" width="100%"/>
+          </div>
+          <div class="column is-4">
+            <img src="./static/images/Failure_Variance_page-0001.jpg" alt="Failure Variance Results" width="100%"/>
+          </div>
+          <div class="column is-4">
+            <img src="./static/images/Diversity_to_OG_page-0001.jpg" alt="Diversity to Original Comparison" width="100%"/>
+          </div>
+        </div>
+        <div style="margin: 30px 0;">
+          <table class="table is-bordered" style="width: 80%; margin: auto;">
+            <thead>
+              <tr>
+                <th>Metric (Domain)</th>
+                <th>Rephrase</th>
+                <th>ERT</th>
+                <th>Q-DIG</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>BLEU (LIBERO)</strong></td>
+                <td><strong>0.963</strong><sub>0.003</sub></td>
+                <td>0.951<sub>0.01</sub></td>
+                <td>0.947<sub>0.01</sub></td>
+              </tr>
+              <tr>
+                <td><strong>BLEU (SimplerEnv)</strong></td>
+                <td>0.928<sub>0.01</sub></td>
+                <td>0.936<sub>0.01</sub></td>
+                <td><strong>0.946</strong><sub>0.01</sub></td>
+              </tr>
+              <tr>
+                <td><strong>Coverage (LIBERO)</strong></td>
+                <td>0.363<sub>0.02</sub></td>
+                <td>0.325<sub>0.01</sub></td>
+                <td><strong>0.972</strong><sub>0.02</sub></td>
+              </tr>
+              <tr>
+                <td><strong>Coverage (SimplerEnv)</strong></td>
+                <td>0.388<sub>0.03</sub></td>
+                <td>0.325<sub>0.02</sub></td>
+                <td><strong>0.913</strong><sub>0.02</sub></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/ Diversity Analysis. -->
+
+    <!-- Archive Visualization. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Q-DIG Archive Examples</h2>
+        <div class="hero-body">
+          <img src="./static/images/heatmap_page-0001.jpg" alt="Q-DIG Archive Heatmaps Overview" width="100%" style="margin-bottom: 20px;"/>
+        </div>
+        <div class="hero-body">
+          <img src="./static/images/QDIG_HEATMAPS_page-0001.jpg" alt="Q-DIG Archive Heatmaps Examples" width="100%" style="margin-bottom: 20px;"/>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Example archive heatmaps showing the failure variance induced by instructions across different attack styles (c0-c7). Q-DIG successfully discovers diverse instructions with high failure rates across semantic categories defined below:
+          </p>
+          <div style="margin: 20px 0;">
+            <table class="table is-bordered is-striped" style="width: 100%; margin: auto;">
+              <tbody>
+                <tr>
+                  <td><strong>Step-by-step instructions (c0):</strong> unnecessary breakdown of the task into multiple sequential steps</td>
+                  <td><strong>Uncommon vocabulary (c1):</strong> use of rare, technical, or overly formal words instead of simple ones</td>
+                </tr>
+                <tr>
+                  <td><strong>Human-centric tone (c2):</strong> instruction phrased as if addressing a human instead of a robot</td>
+                  <td><strong>Use of adverbs (c3):</strong> adding vague modifiers like "carefully" or "gently" that don't add clarity</td>
+                </tr>
+                <tr>
+                  <td><strong>Unnecessary action specification (c4):</strong> extra details about how to execute the task, beyond the core instruction</td>
+                  <td><strong>Overly verbose reformulation (c5):</strong> inflated or wordy phrasing without changing the meaning</td>
+                </tr>
+                <tr>
+                  <td><strong>Colloquial/casual style (c6):</strong> use of slang or conversational tone inappropriate for robotic tasks</td>
+                  <td><strong>Mixed modality references (c7):</strong> adding sensory references (e.g., sight, sound) that the robot may not have</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Archive Visualization. -->
+
+    <!-- Performance Comparison. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Baseline Comparisons</h2>
+        <div class="content has-text-justified">
+          <p>
+            Compare results between OpenVLA and Fine-tuned OpenVLA across various original and adversarial prompts to demonstrate improved robustness.
+          </p>
+        </div>
+        <div class="box mt-0 mb-0">
+          <div class="columns is-centered">
+            <div class="column is-narrow">
+              <div class="field">
+                <label class="label">Choose a task to view baseline comparisons:</label>
+                <div class="control">
+                  <div class="select">
+                    <select id="baseline-selector">
+                      <option value="lift_ball">(Original prompt) Pick up the Coke can</option>
+                      <option value="lift_tray">(Adversarial prompt) Carefully grab that soda can, buddy!</option>
+                      <option value="push_box">(Original prompt) Open the top drawer</option>
+                      <option value="push_buttons">(Adversarial prompt) Gently slide open the upper compartment</option>
+                      <option value="straighten_rope">(Original prompt) Close the bottom drawer</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-centered mt-4">
+            <div class="column">
+              <div id="baseline-container" class="has-text-centered">
+                <!-- Lift Ball -->
+                <div id="lift_ball" class="baseline-comparison">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CLB/OpenVLA_CLB.mp4" type="video/mp4">
+                      </video>
+                    </div>
+
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CLB/FinetunedOpenVLA_CLB.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Lift Tray -->
+                <div id="lift_tray" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CLT/OpenVLA_CLT.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CLT/FinetunedOpenVLA_CLT.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Push Box -->
+                <div id="push_box" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CPB/OpenVLA_CPB.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CPB/FinetunedOpenVLA_CPB.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Coordinated Put Item In Drawer -->
+                <div id="push_buttons" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CPID/OpenVLA_CPID.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/CPID/FinetunedOpenVLA_CPID.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Straighten Rope -->
+                <div id="straighten_rope" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/BSR/OpenVLA_BSR.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
+                        <source src="./static/videos/baseline/BSR/FinetunedOpenVLA_BSR.mp4" type="video/mp4">
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Performance Comparison. -->
+
+    <!-- Experimental Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Experimental Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Comprehensive evaluation results across SimplerEnv and LIBERO benchmarks. Our experiments demonstrate that Q-DIG generates more human-like instructions compared to baselines and that fine-tuning with these instructions leads to substantial improvements in VLA robustness.
+          </p>
+        </div>
+        <div style="margin: 30px 0;">
+          <table class="table is-bordered" style="width: 90%; margin: auto;">
+            <thead>
+              <tr>
+                <th>Finetuned Model / Prompts</th>
+                <th>Original</th>
+                <th>Rephrase</th>
+                <th>ERT</th>
+                <th>Q-DIG</th>
+                <th>Avg.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original</strong></td>
+                <td><strong>97.4%</strong></td>
+                <td>90.3%</td>
+                <td>66.2%</td>
+                <td>63.9%</td>
+                <td>75.5%</td>
+              </tr>
+              <tr>
+                <td><strong>Rephrase</strong></td>
+                <td>62.2%</td>
+                <td>63.4%</td>
+                <td>53.3%</td>
+                <td>47.6%</td>
+                <td>55.8%</td>
+              </tr>
+              <tr>
+                <td><strong>ERT</strong></td>
+                <td>94.6%</td>
+                <td><strong>90.8%</strong></td>
+                <td><strong>91.1%</strong></td>
+                <td>76.4%</td>
+                <td><strong>87.3%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Q-DIG</strong></td>
+                <td>93.8%</td>
+                <td>84.7%</td>
+                <td>66.9%</td>
+                <td><strong>88.9%</strong></td>
+                <td>82.1%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="hero-body">
+          <img src="./static/images/experimental_results.png" alt="Experimental Results" width="100%" style="margin-bottom: 20px;"/>
+        </div>
+      </div>
+    </div>
+    <!--/ Experimental Results. -->
 
     <!-- Paper video. -->
     <!-- <div class="columns is-centered has-text-centered">

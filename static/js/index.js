@@ -75,4 +75,11 @@ $(document).ready(function() {
 
     bulmaSlider.attach();
 
+    // Baseline comparison dropdown functionality
+    $('#baseline-selector').on('change', function() {
+        var selectedTask = $(this).val();
+        $('.baseline-comparison').hide();
+        $('#' + selectedTask).show();
+    });
+
 })

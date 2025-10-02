@@ -163,7 +163,7 @@
 </section>
 
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -210,7 +210,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <section class="section">
@@ -221,34 +221,22 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Vision-Language-Action (VLA) models have sig-
-nificant potential to enable general-purpose robotic systems for
-a range of vision-language tasks. However, the performance of
-VLA-based robots is highly sensitive to the precise wording of
-language instructions, and it remains difficult to predict when
-such robots will fail. To improve the robustness of VLAs to
-different wordings, we present Q-DIG (Quality Diversity for
-Diverse Instruction Generation), which performs red-teaming
-by scalably identifying diverse natural language task descrip-
-tions that induce failures while remaining task-relevant. Q-
-DIG integrates Quality Diversity (QD) techniques with Vision-
-Language Models (VLMs) to generate a broad spectrum of
-adversarial instructions that expose meaningful vulnerabilities
-in VLA behavior. Our results across multiple simulation bench-
-marks show that Q-DIG finds more diverse and meaningful
-failure modes compared to baseline methods, and that fine-
-tuning VLAs on the generated instructions improves task
-success rates. Furthermore, results from a user study highlight
-that Q-DIG generates prompts judged to be more natural and
-human-like than those from baselines. Together, these findings
-suggest that Q-DIG is a promising approach for identifying
-vulnerabilities and improving the robustness of VLA-based
-robots.
+            Vision-Language-Action (VLA) models have significant potential to enable general-purpose robotic systems for a range of vision-language tasks. However, the performance of VLA-based robots is highly sensitive to the precise wording of language instructions, and it remains difficult to predict when such robots will fail.
+          </p>
+
+          <p>
+            To improve the robustness of VLAs to different wordings, we present <b>Q-DIG (Quality Diversity for Diverse Instruction Generation)</b>, which performs red-teaming by scalably identifying diverse natural language task descriptions that induce failures while remaining task-relevant. Q-DIG integrates Quality Diversity (QD) techniques with Vision-Language Models (VLMs) to generate a broad spectrum of adversarial instructions that expose meaningful vulnerabilities in VLA behavior.
+          </p>
+
+          <p>
+            Our results across multiple simulation benchmarks show that Q-DIG finds <b>more diverse and meaningful failure modes compared to baseline methods</b>, and that <b>fine-tuning VLAs on the generated instructions improves task success rates</b>. Furthermore, results from a user study highlight that Q-DIG generates prompts judged to be more natural and human-like than those from baselines. Together, these findings suggest that Q-DIG is a promising approach for identifying vulnerabilities and improving the robustness of VLA-based robots.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
+
+    <br><br><br>
 
     <!-- Method Overview. -->
     <div class="columns is-centered has-text-centered">
@@ -355,11 +343,15 @@ robots.
                 <div class="control">
                   <div class="select">
                     <select id="baseline-selector">
-                      <option value="lift_ball">(Original prompt) Pick up the Coke can</option>
-                      <option value="lift_tray">(Adversarial prompt) Carefully grab that soda can, buddy!</option>
-                      <option value="push_box">(Original prompt) Open the top drawer</option>
-                      <option value="push_buttons">(Adversarial prompt) Gently slide open the upper compartment</option>
-                      <option value="straighten_rope">(Original prompt) Close the bottom drawer</option>
+                      <!--TODO: Original Prompts-->
+
+
+                      <!--Adversarial prompts-->
+                      <option value="adv_cooker_libero">(Adversarial) carefully get the cooker up and running</option>
+                      <option value="adv_drawer_libero">(Adversarial) carefully and with precision, proceed to initiate the process to open up the central compartment of the cabinetry unit</option>
+                      <option value="adv_wine_libero">(Adversarial) grip the wine bottle with the robotic hand, lift it gently from the table, and place it carefully on the second shelf of the rack</option>
+
+                      <!--TODO: human prompts-->
                     </select>
                   </div>
                 </div>
@@ -370,96 +362,52 @@ robots.
           <div class="columns is-centered mt-4">
             <div class="column">
               <div id="baseline-container" class="has-text-centered">
-                <!-- Lift Ball -->
-                <div id="lift_ball" class="baseline-comparison">
+                <!-- Adv. Cooker LIBERO -->
+                <div id="adv_cooker_libero" class="baseline-comparison">
                   <div class="columns">
                     <div class="column is-6">
                       <h5 class="title is-5">OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CLB/OpenVLA_CLB.mp4" type="video/mp4">
-                      </video>
+                      <img src="./static/videos/openvla_cooker_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
+                                            </div>
+
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <img src="./static/videos/qdig_cooker_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
+                                            </div>
+                  </div>
+                </div>
+                
+                <!-- Adv. Drawer LIBERO -->
+                <div id="adv_drawer_libero" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">OpenVLA</h5>
+                      <img src="./static/videos/openvla_drawer_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                     </div>
 
                     <div class="column is-6">
                       <h5 class="title is-5">Fine-tuned OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CLB/FinetunedOpenVLA_CLB.mp4" type="video/mp4">
-                      </video>
+                      <img src="./static/videos/qdig_drawer_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                     </div>
                   </div>
                 </div>
 
-                <!-- Lift Tray -->
-                <div id="lift_tray" class="baseline-comparison" style="display: none;">
+                <!-- Adv. Wine LIBERO -->
+                <div id="adv_wine_libero" class="baseline-comparison" style="display: none;">
                   <div class="columns">
                     <div class="column is-6">
                       <h5 class="title is-5">OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CLT/OpenVLA_CLT.mp4" type="video/mp4">
-                      </video>
-                    </div>
+                      <img src="./static/videos/openvla_wine_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
+                                            </div>
+
                     <div class="column is-6">
                       <h5 class="title is-5">Fine-tuned OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CLT/FinetunedOpenVLA_CLT.mp4" type="video/mp4">
-                      </video>
-                    </div>
+                      <img src="./static/videos/qdig_wine_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
+                                            </div>
                   </div>
                 </div>
 
-                <!-- Push Box -->
-                <div id="push_box" class="baseline-comparison" style="display: none;">
-                  <div class="columns">
-                    <div class="column is-6">
-                      <h5 class="title is-5">OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CPB/OpenVLA_CPB.mp4" type="video/mp4">
-                      </video>
-                    </div>
-                    <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CPB/FinetunedOpenVLA_CPB.mp4" type="video/mp4">
-                      </video>
-                    </div>
-                  </div>
-                </div>
 
-                <!-- Coordinated Put Item In Drawer -->
-                <div id="push_buttons" class="baseline-comparison" style="display: none;">
-                  <div class="columns">
-                    <div class="column is-6">
-                      <h5 class="title is-5">OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CPID/OpenVLA_CPID.mp4" type="video/mp4">
-                      </video>
-                    </div>
-                    <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/CPID/FinetunedOpenVLA_CPID.mp4" type="video/mp4">
-                      </video>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Straighten Rope -->
-                <div id="straighten_rope" class="baseline-comparison" style="display: none;">
-                  <div class="columns">
-                    <div class="column is-6">
-                      <h5 class="title is-5">OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/BSR/OpenVLA_BSR.mp4" type="video/mp4">
-                      </video>
-                    </div>
-                    <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
-                      <video controls="" muted="" style="width: 90%; height: 85%; min-height: 218px;">
-                        <source src="./static/videos/baseline/BSR/FinetunedOpenVLA_BSR.mp4" type="video/mp4">
-                      </video>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -525,9 +473,9 @@ robots.
             </tbody>
           </table>
         </div>
-        <div class="hero-body">
+        <!-- <div class="hero-body">
           <img src="./static/images/experimental_results.png" alt="Experimental Results" width="100%" style="margin-bottom: 20px;"/>
-        </div>
+        </div> -->
       </div>
     </div>
     <!--/ Experimental Results. -->

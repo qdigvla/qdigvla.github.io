@@ -332,7 +332,7 @@
         <h2 class="title is-3">Baseline Comparisons</h2>
         <div class="content has-text-justified">
           <p>
-            Compare results between OpenVLA and Fine-tuned OpenVLA across various original and adversarial prompts to demonstrate improved robustness.
+            Compare results between Fine-tuned OpenVLA and <b>Adversarially</b> Fine-tuned OpenVLA across various original and adversarial prompts to demonstrate improved robustness.
           </p>
         </div>
         <div class="box mt-0 mb-0">
@@ -366,12 +366,12 @@
                 <div id="adv_cooker_libero" class="baseline-comparison">
                   <div class="columns">
                     <div class="column is-6">
-                      <h5 class="title is-5">OpenVLA</h5>
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
                       <img src="./static/videos/openvla_cooker_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
 
                     <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA</h5>
                       <img src="./static/videos/qdig_cooker_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
                   </div>
@@ -381,12 +381,12 @@
                 <div id="adv_drawer_libero" class="baseline-comparison" style="display: none;">
                   <div class="columns">
                     <div class="column is-6">
-                      <h5 class="title is-5">OpenVLA</h5>
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
                       <img src="./static/videos/openvla_drawer_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                     </div>
 
                     <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA</h5>
                       <img src="./static/videos/qdig_drawer_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                     </div>
                   </div>
@@ -396,12 +396,12 @@
                 <div id="adv_wine_libero" class="baseline-comparison" style="display: none;">
                   <div class="columns">
                     <div class="column is-6">
-                      <h5 class="title is-5">OpenVLA</h5>
+                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
                       <img src="./static/videos/openvla_wine_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
 
                     <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA</h5>
                       <img src="./static/videos/qdig_wine_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
                   </div>
@@ -422,7 +422,7 @@
         <h2 class="title is-3">Experimental Results</h2>
         <div class="content has-text-justified">
           <p>
-            Comprehensive evaluation results across SimplerEnv and LIBERO benchmarks. Our experiments demonstrate that Q-DIG generates more human-like instructions compared to baselines and that fine-tuning with these instructions leads to substantial improvements in VLA robustness.
+            Comprehensive evaluation results across SimplerEnv and LIBERO benchmarks. Our experiments demonstrate that fine-tuning with adversarial these instructions leads to substantial improvements in VLA robustness and generalization to <b>unseen language instructions</b>.
           </p>
         </div>
         <div style="margin: 30px 0;">

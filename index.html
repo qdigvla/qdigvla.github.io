@@ -339,19 +339,27 @@
           <div class="columns is-centered">
             <div class="column is-narrow">
               <div class="field">
-                <label class="label">Choose a task to view baseline comparisons:</label>
+                <label class="label">Choose a task to view an example baseline comparison:</label>
                 <div class="control">
                   <div class="select">
                     <select id="baseline-selector">
                       <!--TODO: Original Prompts-->
+                      <!-- <option value="qd_coke_can">(Original) carefully get the cooker up and running</option>
+                      <option value="qd_top_drawer">(Original) carefully and with precision, proceed to initiate the process to open up the central compartment of the cabinetry unit</option>
+                      <option value="qd_bottom_drawer">(Original) grip the wine bottle with the robotic hand, lift it gently from the table, and place it carefully on the second shelf of the rack</option> -->
+
+                      <!--LIBERO Adversarial prompts-->
+                      <option value="adv_cooker_libero">(Q-DIG LIBERO) carefully get the cooker up and running</option>
+                      <option value="adv_drawer_libero">(Q-DIG LIBERO) carefully and with precision, proceed to initiate the process to open up the central compartment of the cabinetry unit</option>
+                      <option value="adv_wine_libero">(Q-DIG LIBERO) grip the wine bottle with the robotic hand, lift it gently from the table, and place it carefully on the second shelf of the rack</option>
+
+                      <!--SimplerEnv Adv Prompts-->
+                      <option value="qd_coke_can">(Q-DIG SimplerEnv) approach the coke can, adjust your grip, gently grasp it, and then lift it carefully</option>
+                      <option value="qd_top_drawer">(Q-DIG SimplerEnv) could you open the top drawer, please?</option>
 
 
-                      <!--Adversarial prompts-->
-                      <option value="adv_cooker_libero">(Adversarial) carefully get the cooker up and running</option>
-                      <option value="adv_drawer_libero">(Adversarial) carefully and with precision, proceed to initiate the process to open up the central compartment of the cabinetry unit</option>
-                      <option value="adv_wine_libero">(Adversarial) grip the wine bottle with the robotic hand, lift it gently from the table, and place it carefully on the second shelf of the rack</option>
-
-                      <!--TODO: human prompts-->
+                      <!--SimplerEnv Adv Human prompts-->
+                      <option value="human_coke_can">(Human SimplerEnv) pick up the soda can</option>
                     </select>
                   </div>
                 </div>
@@ -366,12 +374,12 @@
                 <div id="adv_cooker_libero" class="baseline-comparison">
                   <div class="columns">
                     <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Fine-tuned OpenVLA ❌</h5>
                       <img src="./static/videos/openvla_cooker_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
 
                     <div class="column is-6">
-                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA ✅</h5>
                       <img src="./static/videos/qdig_cooker_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
                   </div>
@@ -381,12 +389,12 @@
                 <div id="adv_drawer_libero" class="baseline-comparison" style="display: none;">
                   <div class="columns">
                     <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Fine-tuned OpenVLA ❌</h5>
                       <img src="./static/videos/openvla_drawer_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                     </div>
 
                     <div class="column is-6">
-                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA ✅</h5>
                       <img src="./static/videos/qdig_drawer_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                     </div>
                   </div>
@@ -396,17 +404,60 @@
                 <div id="adv_wine_libero" class="baseline-comparison" style="display: none;">
                   <div class="columns">
                     <div class="column is-6">
-                      <h5 class="title is-5">Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Fine-tuned OpenVLA ❌</h5>
                       <img src="./static/videos/openvla_wine_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
 
                     <div class="column is-6">
-                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA</h5>
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA ✅</h5>
                       <img src="./static/videos/qdig_wine_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
                                             </div>
                   </div>
                 </div>
 
+
+                <!-- Adv. CokeCan SimplerEnv -->
+                <div id="qd_coke_can" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA ❌</h5>
+                      <img src="./static/videos/openvla_cokecan_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
+                                            </div>
+
+                    <div class="column is-6">
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA ✅</h5>
+                      <img src="./static/videos/qdig_cokecan_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
+                                            </div>
+                  </div>
+                </div>
+
+                <!-- Adv. TopDrawer SimplerEnv -->
+                <div id="qd_top_drawer" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA ❌</h5>
+                      <img src="./static/videos/openvla_topdrawer_failure.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;">
+                    </div>
+
+                    <div class="column is-6">
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA ✅</h5>
+                      <img src="./static/videos/qdig_topdrawer_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Human CokeCan SimplerEnv -->
+                <div id="human_coke_can" class="baseline-comparison" style="display: none;">
+                  <div class="columns">
+                    <div class="column is-6">
+                      <h5 class="title is-5">Fine-tuned OpenVLA ❌</h5>
+                      <img src="./static/videos/openvla_human_coke_fail.gif" alt="OpenVLA Failure" style="width: 90%; height: 85%; min-height: 218px;"></div>
+
+                    <div class="column is-6">
+                      <h5 class="title is-5">Adv. Fine-tuned OpenVLA ✅</h5>
+                      <img src="./static/videos/qdig_human_coke_success.gif" alt="Fine-tuned OpenVLA Success" style="width: 90%; height: 85%; min-height: 218px;"></div>
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -426,6 +477,7 @@
           </p>
         </div>
         <div style="margin: 30px 0;">
+          <h3 class="title is-4">LIBERO-Goal</h3>
           <table class="table is-bordered" style="width: 90%; margin: auto;">
             <thead>
               <tr>
@@ -441,7 +493,7 @@
               <tr>
                 <td><strong>Original</strong></td>
                 <td><strong>97.4%</strong></td>
-                <td>90.3%</td>
+                <td><u>90.3%</u></td>
                 <td>66.2%</td>
                 <td>63.9%</td>
                 <td>75.5%</td>
@@ -456,23 +508,76 @@
               </tr>
               <tr>
                 <td><strong>ERT</strong></td>
-                <td>94.6%</td>
+                <td><u>94.6%</u></td>
                 <td><strong>90.8%</strong></td>
                 <td><strong>91.1%</strong></td>
-                <td>76.4%</td>
+                <td><u>76.4%</u></td>
                 <td><strong>87.3%</strong></td>
               </tr>
               <tr>
                 <td><strong>Q-DIG</strong></td>
                 <td>93.8%</td>
                 <td>84.7%</td>
-                <td>66.9%</td>
+                <td><u>66.9%</u></td>
                 <td><strong>88.9%</strong></td>
-                <td>82.1%</td>
+                <td><u>82.1%</u></td>
               </tr>
             </tbody>
           </table>
         </div>
+
+
+        <div style="margin: 30px 0;">
+          <h3 class="title is-4">SimplerEnv</h3>
+          <table class="table is-bordered" style="width: 90%; margin: auto;">
+            <thead>
+              <tr>
+                <th>Finetuned Model / Prompts</th>
+                <th>Original</th>
+                <th>Rephrase</th>
+                <th>ERT</th>
+                <th>Q-DIG</th>
+                <th>Avg.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original</strong></td>
+                <td>49.2%</td>
+                <td>29.8%</td>
+                <td>16.4%</td>
+                <td>32.0%</td>
+                <td>29.4%</td>
+              </tr>
+              <tr>
+                <td><strong>Rephrase</strong></td>
+                <td>19.6%</td>
+                <td>18.4%</td>
+                <td>17.8%</td>
+                <td>18.4%</td>
+                <td>18.4%</td>
+              </tr>
+              <tr>
+                <td><strong>ERT</strong></td>
+                <td><strong>61.7%</strong></td>
+                <td><strong>50.6%</strong></td>
+                <td><strong>53.2%</strong></td>
+                <td><strong>55.2%</strong></td>
+                <td><strong>54.2%</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Q-DIG</strong></td>
+                <td><u>55.2%</u></td>
+                <td><u>40.8%</u></td>
+                <td><u>33.8%</u></td>
+                <td><u>41.6%</u></td>
+                <td><u>41.1%</u></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
         <!-- <div class="hero-body">
           <img src="./static/images/experimental_results.png" alt="Experimental Results" width="100%" style="margin-bottom: 20px;"/>
         </div> -->

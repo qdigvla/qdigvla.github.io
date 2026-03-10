@@ -96,12 +96,14 @@ $(document).ready(function() {
     });
 
     // Tab switching for experimental results
-    $('#sim-tabs li').on('click', function() {
-        var tabId = $(this).data('tab');
+    $('#sim-tabs li a').on('click', function(e) {
+        e.preventDefault();
+        var $li = $(this).closest('li');
+        var tabId = $li.data('tab');
         $('#sim-tabs li').removeClass('is-active');
-        $(this).addClass('is-active');
+        $li.addClass('is-active');
         $('.tab-content').hide();
-        $('#' + tabId).show();
+        $('#' + tabId).fadeIn(250);
     });
 
 })

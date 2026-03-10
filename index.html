@@ -672,8 +672,8 @@
                   <div class="control">
                     <div class="select">
                       <select id="realworld-selector">
+                        <option value="rw_coke_p1">(Real-World) meticulously exert force upon the aluminum beverage container</option>
                         <option value="rw_coke_original">(Real-World) Push Coke Can - Original Prompt</option>
-                        <option value="rw_coke_p1">(Real-World) Push Coke Can - Adversarial P1</option>
                         <option value="rw_coke_p2">(Real-World) Push Coke Can - Adversarial P2</option>
                         <option value="rw_sponge">(Real-World) Push Sponge</option>
                       </select>
@@ -686,35 +686,31 @@
             <div class="columns is-centered mt-4">
               <div class="column">
                 <div id="realworld-container" class="has-text-centered">
-                  <div id="rw_coke_original" class="realworld-comparison">
+                  <div id="rw_coke_p1" class="realworld-comparison">
                     <div class="columns">
                       <div class="column is-6">
-                        <h5 class="title is-5">Original Policy</h5>
+                        <h5 class="title is-5">Original Policy &#10060;</h5>
+                        <img src="./static/videos/real_fail.gif" alt="Original Policy Failure" style="width: 90%; height: 85%; min-height: 218px;">
+                      </div>
+                      <div class="column is-6">
+                        <h5 class="title is-5">Q-DIG Augmented Policy &#9989;</h5>
+                        <img src="./static/videos/real_success.gif" alt="Q-DIG Policy Success" style="width: 90%; height: 85%; min-height: 218px;">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="rw_coke_original" class="realworld-comparison" style="display: none;">
+                    <div class="columns">
+                      <div class="column is-6">
+                        <h5 class="title is-5">Original Policy &#10060;</h5>
                         <div class="video-placeholder">
                           <p>Video placeholder - Original policy on original prompt</p>
                         </div>
                       </div>
                       <div class="column is-6">
-                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <h5 class="title is-5">Q-DIG Augmented Policy &#9989;</h5>
                         <div class="video-placeholder">
                           <p>Video placeholder - Q-DIG policy on original prompt</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div id="rw_coke_p1" class="realworld-comparison" style="display: none;">
-                    <div class="columns">
-                      <div class="column is-6">
-                        <h5 class="title is-5">Original Policy</h5>
-                        <div class="video-placeholder">
-                          <p>Video placeholder - Original policy on adversarial P1</p>
-                        </div>
-                      </div>
-                      <div class="column is-6">
-                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
-                        <div class="video-placeholder">
-                          <p>Video placeholder - Q-DIG policy on adversarial P1</p>
                         </div>
                       </div>
                     </div>
@@ -723,13 +719,13 @@
                   <div id="rw_coke_p2" class="realworld-comparison" style="display: none;">
                     <div class="columns">
                       <div class="column is-6">
-                        <h5 class="title is-5">Original Policy</h5>
+                        <h5 class="title is-5">Original Policy &#10060;</h5>
                         <div class="video-placeholder">
                           <p>Video placeholder - Original policy on adversarial P2</p>
                         </div>
                       </div>
                       <div class="column is-6">
-                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <h5 class="title is-5">Q-DIG Augmented Policy &#9989;</h5>
                         <div class="video-placeholder">
                           <p>Video placeholder - Q-DIG policy on adversarial P2</p>
                         </div>
@@ -740,13 +736,13 @@
                   <div id="rw_sponge" class="realworld-comparison" style="display: none;">
                     <div class="columns">
                       <div class="column is-6">
-                        <h5 class="title is-5">Original Policy</h5>
+                        <h5 class="title is-5">Original Policy &#10060;</h5>
                         <div class="video-placeholder">
                           <p>Video placeholder - Original policy on push sponge</p>
                         </div>
                       </div>
                       <div class="column is-6">
-                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <h5 class="title is-5">Q-DIG Augmented Policy &#9989;</h5>
                         <div class="video-placeholder">
                           <p>Video placeholder - Q-DIG policy on push sponge</p>
                         </div>

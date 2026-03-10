@@ -151,8 +151,8 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" controls loop playsinline height="100%" poster="./static/images/main_fig_v4.jpg">
-        <source src="./static/videos/Q_Dig_Vid.mov"
+      <video id="teaser" controls loop playsinline height="100%" poster="./static/images/main_fig_v11.png">
+        <source src="./static/videos/qdig_submission_video-2.mp4"
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
@@ -221,42 +221,39 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Vision-Language-Action (VLA) models have significant potential to enable general-purpose robotic systems for a range of vision-language tasks. However, the performance of VLA-based robots is highly sensitive to the precise wording of language instructions, and it remains difficult to predict when such robots will fail.
+            Vision-Language-Action (VLA) models have significant potential to enable general-purpose robotic systems for a range of vision-language tasks. However, the performance of VLA-based robots is highly sensitive to the precise wording of language instructions, and it remains difficult to predict when such robots will fail. To improve the robustness of VLAs to different wordings, we present <b>Q-DIG (Quality Diversity for Diverse Instruction Generation)</b>, which performs red-teaming by scalably identifying diverse natural language task descriptions that induce failures while remaining task-relevant. Q-DIG integrates Quality Diversity (QD) techniques with Vision-Language Models (VLMs) to generate a broad spectrum of adversarial instructions that expose meaningful vulnerabilities in VLA behavior.
           </p>
 
           <p>
-            To improve the robustness of VLAs to different wordings, we present <b>Q-DIG (Quality Diversity for Diverse Instruction Generation)</b>, which performs red-teaming by scalably identifying diverse natural language task descriptions that induce failures while remaining task-relevant. Q-DIG integrates Quality Diversity (QD) techniques with Vision-Language Models (VLMs) to generate a broad spectrum of adversarial instructions that expose meaningful vulnerabilities in VLA behavior.
-          </p>
-
-          <p>
-            Our results across multiple simulation benchmarks show that Q-DIG finds <b>more diverse and meaningful failure modes compared to baseline methods</b>, and that <b>fine-tuning VLAs on the generated instructions improves task success rates</b>. Furthermore, results from a user study highlight that Q-DIG generates prompts judged to be more natural and human-like than those from baselines. Together, these findings suggest that Q-DIG is a promising approach for identifying vulnerabilities and improving the robustness of VLA-based robots.
+            Our results across multiple simulation benchmarks show that <b>Q-DIG finds more diverse and meaningful failure modes compared to baseline methods</b>, and that <b>fine-tuning VLAs on the generated instructions improves task success rates</b>. Furthermore, results from a user study highlight that <b>Q-DIG generates prompts judged to be more natural and human-like</b> than those from baselines. Finally, <b>real-world evaluations of Q-DIG prompts show results consistent with simulation</b>, and fine-tuning VLAs on the generated prompts <b>further improves success rates on unseen instructions</b>. Together, these findings suggest that Q-DIG is a promising approach for identifying vulnerabilities and improving the robustness of VLA-based robots.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
 
-    <br><br><br>
-
     <!-- Method Overview. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full">
         <h2 class="title is-3">Method Overview</h2>
         <div class="hero-body">
-          <img src="./static/images/pipeline_v06.jpg" alt="Q-DIG Method Pipeline" width="100%"/>
+          <img src="./static/images/pipeline_v07.png" alt="Q-DIG Method Pipeline" width="100%"/>
         </div>
         <div class="content has-text-justified">
           <p>
-            Q-DIG leverages previously generated instructions as in-context examples to generate new adversarial instructions in target attack styles. Our method consists of three main steps:
+            Q-DIG leverages previously generated instructions as in-context examples to generate new adversarial instructions in target attack styles (green arrows). The generated instructions are evaluated (red arrows) to obtain the variance of failure rates they induce in the VLA as well as their actual attack style. Instructions inducing high failure rates with different attack styles (z0 to z7) are stored in an archive, providing high-quality and diverse examples for future iterations.
           </p>
           <p>
-            <strong>(1) Instruction Generation:</strong> Starting from an original task instruction, Q-DIG uses a Vision-Language Model (VLM) as a mutator to generate candidate instructions in target attack styles (e.g., "use of adverbs", "casual style"). The VLM leverages in-context learning with previously discovered instructions and visual context from the task.
+            <strong>(1) Instruction Selection:</strong> The optimization begins with the original task instruction. As the archive fills, Q-DIG samples a filled cell and retrieves its stored instruction as a "stepping stone" for generating new adversarial instructions.
           </p>
           <p>
-            <strong>(2) Instruction Evaluation:</strong> Generated instructions are evaluated by simulating the base VLA on the task to compute failure variance and an LLM judge categorizes each instruction into semantic attack styles. This provides both quality and diversity measures for the Quality Diversity optimization.
+            <strong>(2) Instruction Mutation:</strong> Q-DIG leverages a VLM as a <em>mutator</em>, using in-context learning with the task's visual context to generate candidate instructions in target attack styles (e.g., "use of adverbs", "casual style").
           </p>
           <p>
-            <strong>(3) Archive Update:</strong> Instructions inducing high failure rates with different attack styles are stored in an archive. Each archive cell corresponds to a specific attack style category, and only the best-performing instruction for each style is retained, providing high-quality and diverse examples for future iterations.
+            <strong>(3) Instruction Evaluation:</strong> Each new instruction is evaluated by rolling out the base VLA to compute failure variance. An external LLM judge categorizes each instruction into semantic attack styles (z0 through z7).
+          </p>
+          <p>
+            <strong>(4) Archive Update:</strong> Instructions are added to the archive if they fill an empty cell (improving <em>diversity</em>) or have higher failure variance than the existing instruction in that cell (improving <em>quality</em>).
           </p>
         </div>
       </div>
@@ -274,16 +271,16 @@
         </div>
         <div class="columns">
           <div class="column is-4">
-            <img src="./static/images/Diversity_page-0001.jpg" alt="Diversity Comparison Results" width="100%"/>
+            <img src="./static/images/Diversity.png" alt="Diversity Comparison Results" width="100%"/>
           </div>
           <div class="column is-4">
-            <img src="./static/images/Failure_Variance_page-0001.jpg" alt="Failure Variance Results" width="100%"/>
+            <img src="./static/images/Failure_Variance.png" alt="Failure Variance Results" width="100%"/>
           </div>
           <div class="column is-4">
-            <img src="./static/images/Diversity_to_OG_page-0001.jpg" alt="Diversity to Original Comparison" width="100%"/>
+            <img src="./static/images/Diversity_to_OG.png" alt="Diversity to Original Comparison" width="100%"/>
           </div>
         </div>
-        <div style="margin: 30px 0;">
+        <div class="section-gap">
           <table class="table is-bordered" style="width: 80%; margin: auto;">
             <thead>
               <tr>
@@ -297,29 +294,41 @@
               <tr>
                 <td><strong>BLEU (LIBERO)</strong></td>
                 <td><strong>0.963</strong><sub>0.003</sub></td>
-                <td>0.951<sub>0.01</sub></td>
+                <td><u>0.951</u><sub>0.01</sub></td>
                 <td>0.947<sub>0.01</sub></td>
               </tr>
               <tr>
                 <td><strong>BLEU (SimplerEnv)</strong></td>
                 <td>0.928<sub>0.01</sub></td>
-                <td>0.936<sub>0.01</sub></td>
+                <td><u>0.936</u><sub>0.01</sub></td>
                 <td><strong>0.946</strong><sub>0.01</sub></td>
               </tr>
               <tr>
                 <td><strong>Coverage (LIBERO)</strong></td>
-                <td>0.363<sub>0.02</sub></td>
+                <td><u>0.363</u><sub>0.02</sub></td>
                 <td>0.325<sub>0.01</sub></td>
                 <td><strong>0.972</strong><sub>0.02</sub></td>
               </tr>
               <tr>
                 <td><strong>Coverage (SimplerEnv)</strong></td>
-                <td>0.388<sub>0.03</sub></td>
+                <td><u>0.388</u><sub>0.03</sub></td>
                 <td>0.325<sub>0.02</sub></td>
                 <td><strong>0.913</strong><sub>0.02</sub></td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="heatmap-container section-gap">
+          <h3 class="title is-4">Example Archive Heatmap</h3>
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <img src="./static/images/heatmap_no_colorbar2.png" alt="Q-DIG Example Archive Heatmap" width="100%"/>
+            </div>
+          </div>
+          <p class="figure-caption has-text-justified">
+            Example archive heatmap from Q-DIG on the LIBERO-Goal "put the bowl on top of the cabinet" task for OpenVLA-OFT. The "z0" through "z7" labels refer to the failure modes outlined in the table above. For example, "z0" corresponds to "step-by-step instructions." The value in the cell corresponds to the failure variance of the discovered instruction, from 0 to 1. Q-DIG discovers instructions of diverse attack styles with high failure variance.
+          </p>
         </div>
       </div>
     </div>
@@ -473,62 +482,77 @@
         <h2 class="title is-3">Experimental Results</h2>
         <div class="content has-text-justified">
           <p>
-            Comprehensive evaluation results across SimplerEnv and LIBERO benchmarks. Our experiments demonstrate that fine-tuning with adversarial these instructions leads to substantial improvements in VLA robustness and generalization to <b>unseen language instructions</b>.
+            Evaluation across LIBERO and SimplerEnv benchmarks on three VLAs: OpenVLA-OFT, &pi;<sub>0.5</sub>, and GR00T N1.6. Fine-tuning with adversarial instructions leads to improved robustness and generalization to <b>unseen language instructions</b>.
           </p>
         </div>
-        <div style="margin: 30px 0;">
-          <h3 class="title is-4">LIBERO-Goal</h3>
-          <table class="table is-bordered" style="width: 90%; margin: auto;">
+
+        <!-- Tabs -->
+        <div class="tabs is-centered is-boxed" id="sim-tabs">
+          <ul>
+            <li class="is-active" data-tab="libero-tab"><a>LIBERO-Goal</a></li>
+            <li data-tab="simplerenv-tab"><a>SimplerEnv</a></li>
+          </ul>
+        </div>
+
+        <!-- LIBERO Tab Content -->
+        <div id="libero-tab" class="tab-content">
+          <div class="table-wrapper">
+          <table class="table is-bordered" style="width: 100%; margin: auto;">
             <thead>
               <tr>
-                <th>Finetuned Model / Prompts</th>
-                <th>Original</th>
-                <th>Rephrase</th>
-                <th>ERT</th>
-                <th>Q-DIG</th>
-                <th>Avg.</th>
+                <th rowspan="2">Unseen Prompts</th>
+                <th colspan="4" style="text-align:center;"><strong>OpenVLA-OFT</strong></th>
+                <th colspan="4" style="text-align:center;"><strong>&pi;<sub>0.5</sub></strong></th>
+                <th colspan="4" style="text-align:center;"><strong>GR00T N1.6</strong></th>
+              </tr>
+              <tr>
+                <th>Orig</th><th>Reph</th><th>ERT</th><th>Q-DIG</th>
+                <th>Orig</th><th>Reph</th><th>ERT</th><th>Q-DIG</th>
+                <th>Orig</th><th>Reph</th><th>ERT</th><th>Q-DIG</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>Original</strong></td>
-                <td><strong>97.4%</strong></td>
-                <td><u>90.3%</u></td>
-                <td>66.2%</td>
-                <td>63.9%</td>
-                <td>75.5%</td>
+                <td><strong>97.4</strong></td><td>62.2</td><td><u>94.6</u></td><td>93.8</td>
+                <td><strong>96.8</strong></td><td><strong>96.8</strong></td><td>96.4</td><td>96.4</td>
+                <td><strong>77.0</strong></td><td>51.6</td><td>46.6</td><td><u>64.8</u></td>
               </tr>
               <tr>
                 <td><strong>Rephrase</strong></td>
-                <td>62.2%</td>
-                <td>63.4%</td>
-                <td>53.3%</td>
-                <td>47.6%</td>
-                <td>55.8%</td>
+                <td><u>90.3</u></td><td>63.4</td><td><strong>90.8</strong></td><td>84.7</td>
+                <td>90.7</td><td><strong>96.0</strong></td><td><u>95.9</u></td><td>95.7</td>
+                <td>28.2</td><td><u>44.4</u></td><td>30.1</td><td><strong>47.7</strong></td>
               </tr>
               <tr>
                 <td><strong>ERT</strong></td>
-                <td><u>94.6%</u></td>
-                <td><strong>90.8%</strong></td>
-                <td><strong>91.1%</strong></td>
-                <td><u>76.4%</u></td>
-                <td><strong>87.3%</strong></td>
+                <td>66.2</td><td>53.3</td><td><strong>91.1</strong></td><td><u>66.9</u></td>
+                <td>62.3</td><td><strong>72.7</strong></td><td>69.6</td><td><u>70.8</u></td>
+                <td>18.1</td><td>36.1</td><td><strong>41.9</strong></td><td><u>37.6</u></td>
               </tr>
               <tr>
                 <td><strong>Q-DIG</strong></td>
-                <td>93.8%</td>
-                <td>84.7%</td>
-                <td><u>66.9%</u></td>
-                <td><strong>88.9%</strong></td>
-                <td><u>82.1%</u></td>
+                <td>63.9</td><td>47.6</td><td><u>76.4</u></td><td><strong>88.9</strong></td>
+                <td>67.5</td><td>71.9</td><td><strong>74.8</strong></td><td><u>73.4</u></td>
+                <td>33.7</td><td><u>42.4</u></td><td>33.6</td><td><strong>55.1</strong></td>
+              </tr>
+              <tr style="border-top: 2px solid #333;">
+                <td><strong>Avg</strong></td>
+                <td>76.9</td><td>55.8</td><td><strong>87.3</strong></td><td><u>82.1</u></td>
+                <td>76.8</td><td><strong>82.6</strong></td><td><u>82.4</u></td><td>82.3</td>
+                <td>33.9</td><td><u>42.5</u></td><td>36.8</td><td><strong>49.4</strong></td>
               </tr>
             </tbody>
           </table>
+          </div>
+          <p class="figure-caption has-text-centered">
+            <b>Cross Validation:</b> 5-fold cross validation on Q-DIG OpenVLA-OFT yields an average success rate of <b>87.12 &pm; 3.39</b> on <i>unseen Q-DIG prompts</i>.
+          </p>
         </div>
 
-
-        <div style="margin: 30px 0;">
-          <h3 class="title is-4">SimplerEnv</h3>
+        <!-- SimplerEnv Tab Content -->
+        <div id="simplerenv-tab" class="tab-content" style="display: none;">
+          <h4 class="title is-5" style="margin-bottom: 1rem;">All 5 Tasks</h4>
           <table class="table is-bordered" style="width: 90%; margin: auto;">
             <thead>
               <tr>
@@ -543,54 +567,277 @@
             <tbody>
               <tr>
                 <td><strong>Original</strong></td>
-                <td>49.2%</td>
-                <td>29.8%</td>
-                <td>16.4%</td>
-                <td>32.0%</td>
+                <td>42.4%</td>
+                <td>37.8%</td>
                 <td>29.4%</td>
+                <td>38.2%</td>
+                <td>37.0%</td>
               </tr>
               <tr>
                 <td><strong>Rephrase</strong></td>
-                <td>19.6%</td>
-                <td>18.4%</td>
-                <td>17.8%</td>
-                <td>18.4%</td>
-                <td>18.4%</td>
+                <td><strong>70.0%</strong></td>
+                <td><strong>70.6%</strong></td>
+                <td><u>39.8%</u></td>
+                <td><strong>61.8%</strong></td>
+                <td><strong>60.5%</strong></td>
               </tr>
               <tr>
                 <td><strong>ERT</strong></td>
-                <td><strong>61.7%</strong></td>
-                <td><strong>50.6%</strong></td>
-                <td><strong>53.2%</strong></td>
-                <td><strong>55.2%</strong></td>
-                <td><strong>54.2%</strong></td>
+                <td><u>66.4%</u></td>
+                <td><u>57.8%</u></td>
+                <td><strong>46.0%</strong></td>
+                <td>47.0%</td>
+                <td><u>54.3%</u></td>
               </tr>
               <tr>
                 <td><strong>Q-DIG</strong></td>
-                <td><u>55.2%</u></td>
-                <td><u>40.8%</u></td>
-                <td><u>33.8%</u></td>
-                <td><u>41.6%</u></td>
-                <td><u>41.1%</u></td>
+                <td>58.8%</td>
+                <td>52.6%</td>
+                <td>38.2%</td>
+                <td><u>59.0%</u></td>
+                <td>52.2%</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 class="title is-5" style="margin-top: 2rem; margin-bottom: 0.5rem;">Excluding Open Top Drawer (4 Tasks)</h4>
+          <p class="has-text-justified" style="width: 90%; margin: 0 auto 15px auto;">
+            Excluding the open top drawer task (where the base VLA confuses semantically similar tasks), Q-DIG achieves the highest average success rate (63.6%).
+          </p>
+          <table class="table is-bordered" style="width: 90%; margin: auto;">
+            <thead>
+              <tr>
+                <th>Finetuned Model / Prompts</th>
+                <th>Original</th>
+                <th>Rephrase</th>
+                <th>ERT</th>
+                <th>Q-DIG</th>
+                <th>Avg.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original</strong></td>
+                <td>53.0%</td>
+                <td>47.2%</td>
+                <td>36.8%</td>
+                <td>47.8%</td>
+                <td>46.2%</td>
+              </tr>
+              <tr>
+                <td><strong>Rephrase</strong></td>
+                <td>69.0%</td>
+                <td><strong>71.8%</strong></td>
+                <td><u>46.2%</u></td>
+                <td><u>59.0%</u></td>
+                <td><u>61.5%</u></td>
+              </tr>
+              <tr>
+                <td><strong>ERT</strong></td>
+                <td><strong>72.0%</strong></td>
+                <td>63.0%</td>
+                <td><strong>46.5%</strong></td>
+                <td>47.5%</td>
+                <td>57.2%</td>
+              </tr>
+              <tr>
+                <td><strong>Q-DIG</strong></td>
+                <td><u>70.5%</u></td>
+                <td><u>64.5%</u></td>
+                <td><strong>46.5%</strong></td>
+                <td><strong>72.8%</strong></td>
+                <td><strong>63.6%</strong></td>
               </tr>
             </tbody>
           </table>
         </div>
-
-
-        <div class="content has-text-justified">
-          <h3>Misc</h3>
-          <p>
-            <b>Cross Validation:</b> We evaluated our Q-DIG fine-tuned model with 5-fold cross validation (i.e. fine-tuning the model on 8 seen prompts and evaluating on 2 unseen prompts), and found an average success rate of <b>87.12 ± 3.39</b> on <i>unseen Q-DIG prompts</i>.
-          </p>
-        </div>
-
-
-        <!-- <div class="hero-body">
-          <img src="./static/images/experimental_results.png" alt="Experimental Results" width="100%" style="margin-bottom: 20px;"/>
-        </div> -->
       </div>
     </div>
+
+    <!-- Real-World Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Real-World Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            We validate Q-DIG on a real robot (Gen-2 Kinova JACO arm with RealSense D435i cameras) on two tasks: "push the coke can" and "push the sponge." Adversarial prompts were generated using digital twins in SimplerEnv and evaluated on the real robot. We compare a base OpenVLA-OFT policy with one fine-tuned on a Q-DIG-augmented dataset.
+          </p>
+        </div>
+
+        <div class="columns is-centered" style="margin-bottom: 20px;">
+          <div class="column is-6">
+            <img src="./static/images/real_world_final.png" alt="Real-World Setup" class="setup-image" width="100%"/>
+            <p class="figure-caption"><em>Our real-world experimental setup.</em></p>
+          </div>
+        </div>
+
+        <div class="section-gap">
+          <h3 class="title is-4">Sim-to-Real Transfer</h3>
+          <p class="has-text-justified" style="margin-bottom: 15px;">
+            Q-DIG prompts generated in simulation follow similar adversarial trends in the real world (e.g., P1 and P3 attain lower success rates in both; P4 attains 100% in both).
+          </p>
+          <table class="table is-bordered" style="width: 70%; margin: auto;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Original</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>P3</th>
+                <th>P4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Real-World</strong></td>
+                <td>9/10</td>
+                <td>0/10</td>
+                <td>8/10</td>
+                <td>5/10</td>
+                <td>10/10</td>
+              </tr>
+              <tr>
+                <td><strong>Simulation</strong></td>
+                <td>10/10</td>
+                <td>4/10</td>
+                <td>7/10</td>
+                <td>4/10</td>
+                <td>10/10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-gap">
+          <h3 class="title is-4">Data Augmentation Improves Real-World Performance</h3>
+          <p class="has-text-justified" style="margin-bottom: 15px;">
+            Fine-tuning with Q-DIG-generated instructions improves real-world performance on unseen adversarial prompts.
+          </p>
+          <table class="table is-bordered" style="width: 50%; margin: auto;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Unseen P1</th>
+                <th>Unseen P2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original</strong></td>
+                <td>0/10</td>
+                <td>8/10</td>
+              </tr>
+              <tr>
+                <td><strong>Q-DIG</strong></td>
+                <td>7/10</td>
+                <td>9/10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Real-World Rollout Comparisons -->
+        <div class="section-gap">
+          <h3 class="title is-4">Real-World Rollout Examples</h3>
+          <div class="box mt-0 mb-0">
+            <div class="columns is-centered">
+              <div class="column is-narrow">
+                <div class="field">
+                  <label class="label">Choose a real-world task to view rollout comparison:</label>
+                  <div class="control">
+                    <div class="select">
+                      <select id="realworld-selector">
+                        <option value="rw_coke_original">(Real-World) Push Coke Can - Original Prompt</option>
+                        <option value="rw_coke_p1">(Real-World) Push Coke Can - Adversarial P1</option>
+                        <option value="rw_coke_p2">(Real-World) Push Coke Can - Adversarial P2</option>
+                        <option value="rw_sponge">(Real-World) Push Sponge</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-centered mt-4">
+              <div class="column">
+                <div id="realworld-container" class="has-text-centered">
+                  <div id="rw_coke_original" class="realworld-comparison">
+                    <div class="columns">
+                      <div class="column is-6">
+                        <h5 class="title is-5">Original Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Original policy on original prompt</p>
+                        </div>
+                      </div>
+                      <div class="column is-6">
+                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Q-DIG policy on original prompt</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="rw_coke_p1" class="realworld-comparison" style="display: none;">
+                    <div class="columns">
+                      <div class="column is-6">
+                        <h5 class="title is-5">Original Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Original policy on adversarial P1</p>
+                        </div>
+                      </div>
+                      <div class="column is-6">
+                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Q-DIG policy on adversarial P1</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="rw_coke_p2" class="realworld-comparison" style="display: none;">
+                    <div class="columns">
+                      <div class="column is-6">
+                        <h5 class="title is-5">Original Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Original policy on adversarial P2</p>
+                        </div>
+                      </div>
+                      <div class="column is-6">
+                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Q-DIG policy on adversarial P2</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="rw_sponge" class="realworld-comparison" style="display: none;">
+                    <div class="columns">
+                      <div class="column is-6">
+                        <h5 class="title is-5">Original Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Original policy on push sponge</p>
+                        </div>
+                      </div>
+                      <div class="column is-6">
+                        <h5 class="title is-5">Q-DIG Augmented Policy</h5>
+                        <div class="video-placeholder">
+                          <p>Video placeholder - Q-DIG policy on push sponge</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Real-World Results. -->
+
   </div>
 </section>
 

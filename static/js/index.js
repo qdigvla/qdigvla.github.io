@@ -82,4 +82,26 @@ $(document).ready(function() {
         $('#' + selectedTask).show();
     });
 
+    // Real-world comparison dropdown functionality
+    $('#realworld-selector').on('change', function() {
+        var selectedTask = $(this).val();
+        $('.realworld-comparison').hide();
+        $('#' + selectedTask).show();
+    });
+
+    // Toggle/collapsible sections
+    $('.toggle-header').on('click', function() {
+        $(this).toggleClass('active');
+        $(this).next('.toggle-content').toggleClass('active');
+    });
+
+    // Tab switching for experimental results
+    $('#sim-tabs li').on('click', function() {
+        var tabId = $(this).data('tab');
+        $('#sim-tabs li').removeClass('is-active');
+        $(this).addClass('is-active');
+        $('.tab-content').hide();
+        $('#' + tabId).show();
+    });
+
 })

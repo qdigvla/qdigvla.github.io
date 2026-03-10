@@ -663,83 +663,7 @@
             We validate Q-DIG on a real robot (Gen-2 Kinova JACO arm with RealSense D435i cameras) on two tasks: "push the coke can" and "push the sponge." Adversarial prompts were generated using digital twins in SimplerEnv and evaluated on the real robot. We compare a base OpenVLA-OFT policy with one fine-tuned on a Q-DIG-augmented dataset.
           </p>
         </div>
-
-        <div class="columns is-centered" style="margin-bottom: 20px;">
-          <div class="column is-6">
-            <img src="./static/images/real_world_final.png" alt="Real-World Setup" class="setup-image" width="100%"/>
-            <p class="figure-caption"><em>Our real-world experimental setup.</em></p>
-          </div>
-        </div>
-
-        <div class="section-gap">
-          <h3 class="title is-4">Sim-to-Real Transfer</h3>
-          <p class="has-text-justified" style="margin-bottom: 15px;">
-            Q-DIG prompts generated in simulation follow similar adversarial trends in the real world (e.g., P1 and P3 attain lower success rates in both; P4 attains 100% in both).
-          </p>
-          <table class="table is-bordered" style="width: 70%; margin: auto;">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Original</th>
-                <th>P1</th>
-                <th>P2</th>
-                <th>P3</th>
-                <th>P4</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Real-World</strong></td>
-                <td>9/10</td>
-                <td>0/10</td>
-                <td>8/10</td>
-                <td>5/10</td>
-                <td>10/10</td>
-              </tr>
-              <tr>
-                <td><strong>Simulation</strong></td>
-                <td>10/10</td>
-                <td>4/10</td>
-                <td>7/10</td>
-                <td>4/10</td>
-                <td>10/10</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="section-gap">
-          <h3 class="title is-4">Data Augmentation Improves Real-World Performance</h3>
-          <p class="has-text-justified" style="margin-bottom: 15px;">
-            Fine-tuning with Q-DIG-generated instructions improves real-world performance on unseen adversarial prompts.
-          </p>
-          <table class="table is-bordered" style="width: 50%; margin: auto;">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Unseen P1</th>
-                <th>Unseen P2</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Original</strong></td>
-                <td>0/10</td>
-                <td>8/10</td>
-              </tr>
-              <tr>
-                <td><strong>Q-DIG</strong></td>
-                <td>7/10</td>
-                <td>9/10</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Real-World Rollout Comparisons -->
-        <div class="section-gap">
-          <h3 class="title is-4">Real-World Rollout Examples</h3>
-          <div class="box mt-0 mb-0">
+        <div class="box mt-0 mb-0">
             <div class="columns is-centered">
               <div class="column is-narrow">
                 <div class="field">
@@ -832,6 +756,70 @@
               </div>
             </div>
           </div>
+
+        <div class="section-gap">
+          <h3 class="title is-4">Sim-to-Real Transfer</h3>
+          <p class="has-text-justified" style="margin-bottom: 15px;">
+            Q-DIG prompts generated in simulation follow similar adversarial trends in the real world (e.g., P1 and P3 attain lower success rates in both; P4 attains 100% in both).
+          </p>
+          <table class="table is-bordered" style="width: 70%; margin: auto;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Original</th>
+                <th>P1</th>
+                <th>P2</th>
+                <th>P3</th>
+                <th>P4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Real-World</strong></td>
+                <td>9/10</td>
+                <td>0/10</td>
+                <td>8/10</td>
+                <td>5/10</td>
+                <td>10/10</td>
+              </tr>
+              <tr>
+                <td><strong>Simulation</strong></td>
+                <td>10/10</td>
+                <td>4/10</td>
+                <td>7/10</td>
+                <td>4/10</td>
+                <td>10/10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-gap">
+          <h3 class="title is-4">Data Augmentation Improves Real-World Performance</h3>
+          <p class="has-text-justified" style="margin-bottom: 15px;">
+            Fine-tuning with Q-DIG-generated instructions improves real-world performance on unseen adversarial prompts.
+          </p>
+          <table class="table is-bordered" style="width: 70%; margin: auto;">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Unseen P1</th>
+                <th>Unseen P2</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Original</strong></td>
+                <td>0/10</td>
+                <td>8/10</td>
+              </tr>
+              <tr>
+                <td><strong>Q-DIG</strong></td>
+                <td>7/10</td>
+                <td>9/10</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
       </div>

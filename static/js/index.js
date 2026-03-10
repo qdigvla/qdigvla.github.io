@@ -75,6 +75,15 @@ $(document).ready(function() {
 
     bulmaSlider.attach();
 
+    // Reset teaser video to poster when it ends
+    var teaser = document.getElementById('teaser');
+    if (teaser) {
+        teaser.addEventListener('ended', function() {
+            teaser.currentTime = 0;
+            teaser.load();
+        });
+    }
+
     // Baseline comparison dropdown functionality
     $('#baseline-selector').on('change', function() {
         var selectedTask = $(this).val();

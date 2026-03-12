@@ -482,7 +482,7 @@
         <h2 class="title is-3">Experimental Results</h2>
         <div class="content has-text-justified">
           <p>
-            Evaluation across LIBERO and SimplerEnv benchmarks on three VLAs: OpenVLA-OFT, &pi;<sub>0.5</sub>, and GR00T N1.6. Fine-tuning with adversarial instructions leads to improved robustness and generalization to <b>unseen language instructions</b>.
+            Evaluation across LIBERO and SimplerEnv benchmarks on three VLAs: OpenVLA-OFT, &pi;<sub>0.5</sub>, and GR00T N1.6. Fine-tuning with adversarial instructions leads to improved robustness and generalization to <b>unseen language instructions</b>. In the paper, we summarize SimplerEnv results for OpenVLA-OFT; the full tables for all tasks are provided here.
           </p>
         </div>
 
@@ -764,12 +764,20 @@
               </tr>
             </tbody>
           </table>
+          <table class="table" style="width: 70%; margin: 10px auto 0 auto; font-size: 0.88rem; color: #555;">
+            <tbody>
+              <tr><td style="padding: 4px 10px; border: none;"><b>P1:</b></td><td style="padding: 4px 10px; border: none; font-style: italic; text-align: left;">&ldquo;meticulously exert force upon the aluminum beverage container&rdquo;</td></tr>
+              <tr><td style="padding: 4px 10px; border: none;"><b>P2:</b></td><td style="padding: 4px 10px; border: none; font-style: italic; text-align: left;">&ldquo;locate the coke can, extend the robotic arm towards it, make contact with the can, and then push it gently across the surface&rdquo;</td></tr>
+              <tr><td style="padding: 4px 10px; border: none;"><b>P3:</b></td><td style="padding: 4px 10px; border: none; font-style: italic; text-align: left;">&ldquo;i&rsquo;m going to need you to go ahead and move the coca cola beverage container with some force, please&rdquo;</td></tr>
+              <tr><td style="padding: 4px 10px; border: none;"><b>P4:</b></td><td style="padding: 4px 10px; border: none; font-style: italic; text-align: left;">&ldquo;move towards the coke can, make contact with the can, apply force, shift can forward, retract arm&rdquo;</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="section-gap">
           <h3 class="title is-4">Data Augmentation Improves Real-World Performance</h3>
           <p class="has-text-justified" style="margin-bottom: 15px;">
-            Fine-tuning with Q-DIG-generated instructions improves real-world performance on unseen adversarial prompts.
+            Fine-tuning with Q-DIG-generated instructions improves real-world performance on unseen adversarial prompts (P1 and P2 as defined above). Rollouts for both are shown in the comparison above.
           </p>
           <table class="table is-bordered" style="width: 70%; margin: auto;">
             <thead>

@@ -838,6 +838,8 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <div style="position: relative;">
+      <span id="copy-bibtex-toast"
+            style="position: absolute; top: 12px; right: 44px; z-index: 1; background: #363636; color: #fff; font-size: 0.75rem; padding: 3px 8px; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.15s ease;">Copied!</span>
       <button id="copy-bibtex" aria-label="Copy BibTeX" title="Copy to clipboard"
               style="position: absolute; top: 10px; right: 10px; z-index: 1; background: transparent; border: none; padding: 6px; cursor: pointer; color: #b5b5b5; line-height: 0; transition: color 0.15s ease;"
               onmouseover="this.style.color='#4a4a4a'" onmouseout="this.style.color='#b5b5b5'">
@@ -857,14 +859,17 @@
       (function () {
         var btn = document.getElementById('copy-bibtex');
         var icon = document.getElementById('copy-bibtex-icon');
+        var toast = document.getElementById('copy-bibtex-toast');
         btn.addEventListener('click', function () {
           var text = document.getElementById('bibtex-entry').innerText;
           navigator.clipboard.writeText(text).then(function () {
             icon.className = 'fas fa-check';
             icon.style.color = '#48c774';
+            toast.style.opacity = '1';
             setTimeout(function () {
               icon.className = 'far fa-copy';
               icon.style.color = '';
+              toast.style.opacity = '0';
             }, 1500);
           });
         });

@@ -838,9 +838,10 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <div style="position: relative;">
-      <button id="copy-bibtex" class="button is-small is-dark" style="position: absolute; top: 10px; right: 10px; z-index: 1;">
-        <span class="icon is-small"><i class="far fa-copy"></i></span>
-        <span>Copy</span>
+      <button id="copy-bibtex" aria-label="Copy BibTeX" title="Copy to clipboard"
+              style="position: absolute; top: 10px; right: 10px; z-index: 1; background: transparent; border: none; padding: 6px; cursor: pointer; color: #b5b5b5; line-height: 0; transition: color 0.15s ease;"
+              onmouseover="this.style.color='#4a4a4a'" onmouseout="this.style.color='#b5b5b5'">
+        <i id="copy-bibtex-icon" class="far fa-copy"></i>
       </button>
       <pre><code id="bibtex-entry">@misc{srikanth2026redteamingvisionlanguageactionmodelsquality,
       title={Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation for Robust Robot Policies},
@@ -855,12 +856,16 @@
     <script>
       (function () {
         var btn = document.getElementById('copy-bibtex');
-        var label = btn.querySelector('span:last-child');
+        var icon = document.getElementById('copy-bibtex-icon');
         btn.addEventListener('click', function () {
           var text = document.getElementById('bibtex-entry').innerText;
           navigator.clipboard.writeText(text).then(function () {
-            label.textContent = 'Copied!';
-            setTimeout(function () { label.textContent = 'Copy'; }, 2000);
+            icon.className = 'fas fa-check';
+            icon.style.color = '#48c774';
+            setTimeout(function () {
+              icon.className = 'far fa-copy';
+              icon.style.color = '';
+            }, 1500);
           });
         });
       })();

@@ -837,13 +837,34 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{srikanth2026redteaming,
-  author    = {Srikanth, Siddharth and Liang, Freddie and Hsu, Ya-Chuan and Bhatt, Varun and Zhao, Shihan and Chen, Henry and Tjanaka, Bryon and Hwang, Minjune and Saran, Akanksha and Seita, Daniel and Tabrez, Aaquib and Nikolaidis, Stefanos},
-  title     = {Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation for Robust Robot Policies},
-  journal   = {arXiv preprint arXiv:2603.12510},
-  year      = {2026},
-}
-    </code></pre>
+    <div style="position: relative;">
+      <button id="copy-bibtex" class="button is-small is-dark" style="position: absolute; top: 10px; right: 10px; z-index: 1;">
+        <span class="icon is-small"><i class="far fa-copy"></i></span>
+        <span>Copy</span>
+      </button>
+      <pre><code id="bibtex-entry">@misc{srikanth2026redteamingvisionlanguageactionmodelsquality,
+      title={Red-Teaming Vision-Language-Action Models via Quality Diversity Prompt Generation for Robust Robot Policies},
+      author={Siddharth Srikanth and Freddie Liang and Ya-Chuan Hsu and Varun Bhatt and Shihan Zhao and Henry Chen and Bryon Tjanaka and Minjune Hwang and Akanksha Saran and Daniel Seita and Aaquib Tabrez and Stefanos Nikolaidis},
+      year={2026},
+      eprint={2603.12510},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2603.12510},
+}</code></pre>
+    </div>
+    <script>
+      (function () {
+        var btn = document.getElementById('copy-bibtex');
+        var label = btn.querySelector('span:last-child');
+        btn.addEventListener('click', function () {
+          var text = document.getElementById('bibtex-entry').innerText;
+          navigator.clipboard.writeText(text).then(function () {
+            label.textContent = 'Copied!';
+            setTimeout(function () { label.textContent = 'Copy'; }, 2000);
+          });
+        });
+      })();
+    </script>
   </div>
 </section>
 
